@@ -5,16 +5,16 @@ function ContestList({ contests }) {
   const { theme } = useContext(Themecontext);
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold">Contest List:</h1>
+    <div className="pt-10 md:pt-0">
+      <h1 className="text-2xl font-bold text-black">Contest List:</h1>
       <div
-        className={`border border-gray-400 mt-6 rounded-lg ${
+        className={`border border-gray-400 mt-2 rounded-lg ${
           theme === "dark"
             ? "bg-slate-900 text-white"
             : "bg-slate-200 text-black"
         }`}
       >
-        <div className="grid grid-cols-[2fr_1fr_1fr_1fr] gap-3 mb-3 border-b border-gray-400 px-3 py-3 font-semibold">
+        <div className="grid  grid-cols-[2fr_1fr_1fr_1fr] gap-3 mb-3 border-b border-gray-400 px-3 py-3 font-semibold">
           <div>Contest Name</div>
           <div>Rating</div>
           <div>Rank</div>

@@ -58,32 +58,46 @@ function ContestRatingChart() {
   }));
 
   return (
-    <div className="grid md:grid-cols-2  gap-10 items-center">
-      <ResponsiveContainer width="100%" height={300}>
-        <h1 className="text-2xl font-bold py-2">Ratings Graph:</h1>
-        <AreaChart
-          data={contestGraphData}
-          margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
-        >
-          <defs>
-            <linearGradient id="colorRating" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#2217f4" stopOpacity={0.8} />
-              <stop offset="95%" stopColor="#2b22e3" stopOpacity={0} />
-            </linearGradient>
-          </defs>
-          <XAxis dataKey="date" />
-          <YAxis domain={["auto", "auto"]} />
-          <Tooltip content={<CustomTooltip />} />
-          <Area
-            type="monotone"
-            dataKey="rating"
-            stroke="#1c10f9"
-            fillOpacity={1}
-            fill="url(#colorRating)"
-          />
-        </AreaChart>
-      </ResponsiveContainer>
-      <ContestList contests={contestGraphData} />
+    <div className="rounded-xl border p-4 shadow-sm bg-white ">
+      <div className=" flex gap-3 justify-end ">
+        <button className="p-2 px-4  bg-blue-600 text-white rounded-lg font-bold hover:bg-blue-700">
+          Last 30 Days
+        </button>{" "}
+        <button className="p-2 px-4 bg-blue-600 text-white rounded-lg font-bold hover:bg-blue-700">
+          Last 90 Days
+        </button>
+        <button className="p-2 px-4 bg-blue-600 text-white rounded-lg font-bold hover:bg-blue-700">
+          Last 365 Days
+        </button>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <ResponsiveContainer width="100%" height={300}>
+          <h1 className="text-2xl text-black font-bold py-2">Ratings Graph:</h1>
+          <AreaChart
+            data={contestGraphData}
+            margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
+          >
+            <defs>
+              <linearGradient id="colorRating" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="#2217f4" stopOpacity={0.8} />
+                <stop offset="95%" stopColor="#2b22e3" stopOpacity={0} />
+              </linearGradient>
+            </defs>
+            <XAxis dataKey="date" />
+            <YAxis domain={["auto", "auto"]} />
+            <Tooltip content={<CustomTooltip />} />
+            <Area
+              type="monotone"
+              dataKey="rating"
+              stroke="#1c10f9"
+              fillOpacity={1}
+              fill="url(#colorRating)"
+            />
+          </AreaChart>
+        </ResponsiveContainer>
+        <ContestList contests={contestGraphData} />
+      </div>
     </div>
   );
 }
