@@ -1,7 +1,8 @@
 import { useContext } from "react";
 import { Themecontext } from "../../context/ThemeContext";
-import "react-icons/hi";
+
 import { HiOutlineDocumentDownload } from "react-icons/hi";
+import Pagination from "../General/Pagination";
 
 function Downloads() {
   const { theme } = useContext(Themecontext);
@@ -41,11 +42,11 @@ function Downloads() {
       }`}
     >
       <div className="pt-10 md:pt-0">
-        <h1 className="text-2xl font-bold">Download History:</h1>
+        <h1 className="text-2xl font-bold pb-2">Download History:</h1>
         <div
           className={`border border-gray-400 mt-2 rounded-lg ${
             theme === "dark"
-              ? "bg-slate-800 text-white"
+              ? "bg-slate-900 text-white"
               : "bg-slate-200 text-black"
           }`}
         >
@@ -56,13 +57,12 @@ function Downloads() {
             <div>Download Again</div>
           </div>
 
-          {/* Scrollable list */}
-          <div className="max-h-[400px] overflow-y-auto">
+          <div>
             {downloadHistory.map((download, i) => (
               <div key={i}>
                 <div className="grid  grid-cols-[2fr_2fr_2fr_2fr] gap-4 items-center px-2 py-2">
                   <div>{download.dateTime}</div>
-                  <div>{download.downloadedBy}</div>
+                  <div className="capitalize">{download.downloadedBy}</div>
                   <div>{download.fileName}</div>
                   <div>
                     <span className="text-3xl  text-blue-700 cursor-pointer">
@@ -78,6 +78,7 @@ function Downloads() {
           </div>
         </div>
       </div>
+      <Pagination />
     </div>
   );
 }

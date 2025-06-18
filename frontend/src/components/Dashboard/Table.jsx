@@ -143,7 +143,7 @@ function Table() {
 
           {/* Grid Table - Only visible on md+ */}
           <div className="hidden md:grid md:grid-cols-[1.5fr_2fr_1.5fr_2fr_1fr_1fr_1.5fr_0.5fr_0.5fr] gap-4 items-center px-2">
-            <div className="font-medium ">{stud.name}</div>
+            <div className="font-medium capitalize">{stud.name}</div>
             <div className=" truncate">{stud.email}</div>
             <div className="">{stud.phone}</div>
             <div className="text-blue-600 font-mono">

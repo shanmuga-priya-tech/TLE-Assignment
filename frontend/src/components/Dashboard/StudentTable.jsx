@@ -3,6 +3,7 @@ import { Themecontext } from "../../context/ThemeContext";
 import "react-icons/hi";
 import { HiOutlineDocumentDownload, HiOutlineUserAdd } from "react-icons/hi";
 import Table from "./Table";
+import Pagination from "../General/Pagination";
 
 function StudentTable() {
   const { theme } = useContext(Themecontext);
@@ -77,6 +78,7 @@ function StudentTable() {
 
       {/* Table */}
       <Table />
+      <Pagination />
     </div>
   );
 }
