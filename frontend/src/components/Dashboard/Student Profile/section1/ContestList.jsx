@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Themecontext } from "../../../context/ThemeContext";
+import { Themecontext } from "../../../../context/ThemeContext";
 
 function ContestList({ contests }) {
   const { theme } = useContext(Themecontext);
@@ -10,7 +10,7 @@ function ContestList({ contests }) {
       <div
         className={`border border-gray-400 mt-2 rounded-lg ${
           theme === "dark"
-            ? "bg-slate-900 text-white"
+            ? "bg-slate-800 text-white"
             : "bg-slate-200 text-black"
         }`}
       >
