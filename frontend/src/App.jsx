@@ -5,6 +5,7 @@ import PageNotFound from "./components/General/PageNotFound";
 import { ThemeProvider } from "./context/ThemeContext";
 import Downloads from "./components/DownloadHistory/Downloads";
 import Users from "./components/UsersList/Users";
+import StudentProfile from "./components/Dashboard/Student Profile/StudentProfile";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
             <Route path="/" element={<AppLayout />}>
               <Route index element={<Navigate replace to="dashboard" />} />
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/studProfile/:studId" element={<StudentProfile />} />
               <Route path="/downloads" element={<Downloads />} />
               <Route path="/users" element={<Users />} />
             </Route>

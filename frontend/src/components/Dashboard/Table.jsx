@@ -7,6 +7,7 @@ import {
 import { format } from "date-fns";
 import { Themecontext } from "../../context/ThemeContext";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 
 function Table() {
   const { theme } = useContext(Themecontext);
@@ -128,10 +129,13 @@ function Table() {
 
               {/* actions */}
               <div className="flex items-center flex-wrap justify-between">
-                <div className="text-sm flex items-center gap-1 cursor-pointer text-blue-500">
+                <Link
+                  to={`/studProfile/${123}`}
+                  className="text-sm flex items-center gap-1 cursor-pointer text-blue-500"
+                >
                   <HiOutlineEye />
                   View More
-                </div>
+                </Link>
 
                 <div className="flex justify-end gap-4 mt-2 text-gray-500">
                   <HiOutlinePencil className="cursor-pointer hover:text-blue-600 transition" />
@@ -156,9 +160,12 @@ function Table() {
                 {format(new Date(stud.lastCFUpdate), "dd MMM hh:mm a")}
               </span>
             </div>
-            <div className="flex justify-center text-blue-500 cursor-pointer hover:text-blue-700 transition">
+            <Link
+              to={`/studProfile/${123}`}
+              className="flex justify-center text-blue-500 cursor-pointer hover:text-blue-700 transition"
+            >
               <HiOutlineEye size={18} />
-            </div>
+            </Link>
             <div className="flex justify-end gap-4 mt-2 text-gray-500">
               <HiOutlinePencil className="cursor-pointer hover:text-blue-600 transition" />
               <HiOutlineTrash className="cursor-pointer hover:text-red-600 transition" />
