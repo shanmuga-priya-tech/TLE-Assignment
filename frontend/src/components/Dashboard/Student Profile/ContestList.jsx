@@ -1,0 +1,45 @@
+import { useContext } from "react";
+import { Themecontext } from "../../../context/ThemeContext";
+
+function ContestList({ contests }) {
+  const { theme } = useContext(Themecontext);
+
+  return (
+    <div>
+      <h1 className="text-2xl font-bold">Contest List:</h1>
+      <div
+        className={`border border-gray-400 mt-6 rounded-lg ${
+          theme === "dark"
+            ? "bg-slate-900 text-white"
+            : "bg-slate-200 text-black"
+        }`}
+      >
+        <div className="grid grid-cols-[2fr_1fr_1fr_1fr] gap-3 mb-3 border-b border-gray-400 px-3 py-3 font-semibold">
+          <div>Contest Name</div>
+          <div>Rating</div>
+          <div>Rank</div>
+          <div className="text-sm">No. of Unsolved Problems</div>
+        </div>
+
+        {/* Scrollable list */}
+        <div className="max-h-[400px] overflow-y-auto">
+          {contests.map((c, i) => (
+            <div key={c.name}>
+              <div className="grid  grid-cols-[2fr_1fr_1fr_1fr] gap-4 items-center px-2 py-2">
+                <div>{c.name}</div>
+                <div>{c.rating}</div>
+                <div>{c.rank}</div>
+                <div>{c.unsolvedProblems}</div>
+              </div>
+              {i !== contests.length - 1 && (
+                <hr className="border border-gray-300 my-2" />
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default ContestList;

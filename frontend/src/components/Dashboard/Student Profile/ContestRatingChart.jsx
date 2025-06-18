@@ -7,6 +7,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import CustomTooltip from "./CustomToolTip";
+import ContestList from "./ContestList";
 
 function ContestRatingChart() {
   const mockContestHistory = [
@@ -52,11 +53,14 @@ function ContestRatingChart() {
     name: c.contestName,
     date: new Date(c.contestDate).toLocaleDateString(),
     rating: c.newRating,
+    rank: c.rank,
+    unsolvedProblems: c.unsolvedProblems,
   }));
 
   return (
-    <div>
+    <div className="grid md:grid-cols-2  gap-10 items-center">
       <ResponsiveContainer width="100%" height={300}>
+        <h1 className="text-2xl font-bold py-2">Ratings Graph:</h1>
         <AreaChart
           data={contestGraphData}
           margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
@@ -79,6 +83,7 @@ function ContestRatingChart() {
           />
         </AreaChart>
       </ResponsiveContainer>
+      <ContestList contests={contestGraphData} />
     </div>
   );
 }

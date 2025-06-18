@@ -1,9 +1,5 @@
 import { HiOutlineEye, HiOutlineMail, HiOutlinePhone } from "react-icons/hi";
-import {
-  HiOutlineDotsVertical,
-  HiOutlinePencil,
-  HiOutlineTrash,
-} from "react-icons/hi";
+import { HiOutlinePencil, HiOutlineTrash } from "react-icons/hi";
 import { format } from "date-fns";
 import { Themecontext } from "../../context/ThemeContext";
 import { useContext } from "react";
