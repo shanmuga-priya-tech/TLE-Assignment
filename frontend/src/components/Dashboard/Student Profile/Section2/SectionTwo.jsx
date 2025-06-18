@@ -8,7 +8,7 @@ function SectionTwo() {
       <div className=" flex gap-3 justify-end ">
         <button className="p-2 px-4  bg-blue-600 text-white rounded-lg font-bold hover:bg-blue-700">
           Last 7 Days
-        </button>{" "}
+        </button>
         <button className="p-2 px-4 bg-blue-600 text-white rounded-lg font-bold hover:bg-blue-700">
           Last 30 Days
         </button>
