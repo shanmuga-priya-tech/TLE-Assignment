@@ -60,20 +60,16 @@ function ContestRatingChart() {
   return (
     <div className="rounded-xl border p-4 shadow-sm bg-white ">
       <div className=" flex gap-3 justify-end ">
-        <button className="p-2 px-4  bg-blue-600 text-white rounded-lg font-bold hover:bg-blue-700">
-          Last 30 Days
-        </button>{" "}
-        <button className="p-2 px-4 bg-blue-600 text-white rounded-lg font-bold hover:bg-blue-700">
-          Last 90 Days
-        </button>
-        <button className="p-2 px-4 bg-blue-600 text-white rounded-lg font-bold hover:bg-blue-700">
-          Last 365 Days
-        </button>
+        <select className="p-2 px-4 text-white cursor-pointer bg-blue-600  rounded-lg font-bold ">
+          <option>Last 30 Days</option>
+          <option>Last 90 Days</option>
+          <option>Last 365 Days</option>
+        </select>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
         <ResponsiveContainer width="100%" height={300}>
-          <h1 className="text-2xl text-black font-bold py-2">Ratings Graph:</h1>
+          <h1 className="text-xl text-black font-bold pb-2">Ratings Graph:</h1>
           <AreaChart
             data={contestGraphData}
             margin={{ top: 10, right: 30, left: 0, bottom: 0 }}

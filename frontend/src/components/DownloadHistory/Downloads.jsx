@@ -41,7 +41,7 @@ function Downloads() {
         theme === "dark" ? "bg-slate-950 text-white" : "bg-slate-200 text-black"
       }`}
     >
-      <div className="pt-10 md:pt-0">
+      <div>
         <h1 className="text-2xl font-bold pb-2">Download History:</h1>
         <div
           className={`border border-gray-400 mt-2 rounded-lg ${
@@ -54,13 +54,13 @@ function Downloads() {
             <div>Date/Time</div>
             <div>Downloaded By</div>
             <div>FileName</div>
-            <div>Download Again</div>
+            <div>Download</div>
           </div>
 
           <div>
             {downloadHistory.map((download, i) => (
               <div key={i}>
-                <div className="grid  grid-cols-[2fr_2fr_2fr_2fr] gap-4 items-center px-2 py-2">
+                <div className="grid  grid-cols-[2fr_2fr_2fr_2fr] text-sm  gap-4 items-center px-2 py-2">
                   <div>{download.dateTime}</div>
                   <div className="capitalize">{download.downloadedBy}</div>
                   <div>{download.fileName}</div>

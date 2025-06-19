@@ -6,7 +6,7 @@ function ContestList({ contests }) {
 
   return (
     <div className="pt-10 md:pt-0">
-      <h1 className="text-2xl font-bold text-black">Contest List:</h1>
+      <h1 className="text-xl font-bold text-black">Contest List:</h1>
       <div
         className={`border border-gray-400 mt-2 rounded-lg ${
           theme === "dark"
@@ -18,7 +18,7 @@ function ContestList({ contests }) {
           <div>Contest Name</div>
           <div>Rating</div>
           <div>Rank</div>
-          <div className="text-sm">No. of Unsolved Problems</div>
+          <div className="text-sm">Unsolved Problems</div>
         </div>
 
         {/* Scrollable list */}

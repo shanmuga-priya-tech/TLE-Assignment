@@ -68,7 +68,7 @@ function Table() {
       }`}
     >
       {/* Header row: visible on md+ only */}
-      <div className="hidden md:grid md:grid-cols-[1.5fr_2fr_1.5fr_2fr_1fr_1fr_1.5fr_0.5fr_0.5fr] gap-3 mb-3 border-b border-gray-400 px-3  py-3 font-semibold">
+      <div className="hidden md:grid md:grid-cols-[1.5fr_2fr_1.5fr_2fr_1fr_1fr_1.5fr_0.5fr] gap-3 mb-3 border-b border-gray-400 px-3  py-3 font-semibold">
         <div>Name</div>
         <div>Email</div>
         <div>Phone Number</div>
@@ -142,7 +142,7 @@ function Table() {
           </div>
 
           {/* Grid Table - Only visible on md+ */}
-          <div className="hidden md:grid md:grid-cols-[1.5fr_2fr_1.5fr_2fr_1fr_1fr_1.5fr_0.5fr_0.5fr] gap-4 items-center px-2">
+          <div className="hidden md:grid md:grid-cols-[1.5fr_2fr_1.5fr_2fr_1fr_1fr_1.5fr_0.5fr] gap-4 items-center px-2">
             <div className="font-medium capitalize">{stud.name}</div>
             <div className=" truncate">{stud.email}</div>
             <div className="">{stud.phone}</div>
@@ -156,13 +156,14 @@ function Table() {
                 {format(new Date(stud.lastCFUpdate), "dd MMM hh:mm a")}
               </span>
             </div>
-            <Link
-              to={`/studProfile/${123}`}
-              className="flex justify-center text-blue-500 cursor-pointer hover:text-blue-700 transition"
-            >
-              <HiOutlineEye size={18} />
-            </Link>
+
             <div className="flex justify-end gap-4 mt-2 text-gray-500">
+              <Link
+                to={`/studProfile/${123}`}
+                className="flex justify-center text-blue-500 cursor-pointer hover:text-blue-700 transition"
+              >
+                <HiOutlineEye size={18} />
+              </Link>
               <HiOutlinePencil className="cursor-pointer hover:text-blue-600 transition" />
               <HiOutlineTrash className="cursor-pointer hover:text-red-600 transition" />
             </div>

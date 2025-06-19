@@ -18,7 +18,7 @@ function BarchartGraph() {
         <YAxis />
       </BarChart>
       <p className="text-sm text-gray-600">
-        No.of.problem solved per rating bucket{" "}
+        problems solved per rating bucket{" "}
       </p>
     </div>
   );

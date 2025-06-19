@@ -14,10 +14,10 @@ function StudentTable() {
       } `}
     >
       <div className="flex justify-between">
-        <h1 className="text-3xl font-bold">Students List</h1>
-        <div className="flex flex-wrap justify-between gap-4">
+        <h1 className="text-3xl font-bold pb-4 md:mb-0">Students List</h1>
+        <div className="flex  md:flex-wrap justify-between gap-4 ">
           {/*Search */}
-          <div className="relative items-center min-w-[200px] border border-slate-500 rounded-lg">
+          <div className="relative items-center min-w-[200px]   rounded-lg">
             <input
               type="text"
               placeholder="Search Students..."
@@ -61,6 +61,7 @@ function StudentTable() {
             <option className="text-black">Alphabetically (A-Z)</option>
             <option className="text-black">Alphabetically (Z-A)</option>
           </select>
+
           <button className="py-2 px-4 flex items-center cursor-pointer rounded-lg border-none bg-slate-300 text-gray-600 text-lg">
             <span>
               <HiOutlineDocumentDownload />

@@ -29,7 +29,7 @@ function Users() {
         theme === "dark" ? "bg-slate-950 text-white" : "bg-slate-200 text-black"
       }`}
     >
-      <div className="pt-10 md:pt-0">
+      <div>
         <div className="flex justify-between items-center pb-4">
           <h1 className="text-2xl font-bold">Users List:</h1>
           <button className="py-2 px-4 flex items-center cursor-pointer rounded-lg border-none bg-blue-700 text-white text-lg">
