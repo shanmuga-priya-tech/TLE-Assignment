@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Themecontext } from "../../context/ThemeContext";
 import {
   HiOutlinePencil,
@@ -10,27 +10,61 @@ import AddUser from "./AddUser";
 import Modal from "../General/Modal";
 import UpdateUser from "./UpdateUser";
 import DeleteConfirm from "../General/DeleteConfirm";
+import axios from "axios";
 
 function UsersList() {
   const { theme } = useContext(Themecontext);
+  const [users, setUsers] = useState([]);
   const [adduser, setAdduser] = useState(false); //toggle form
   const [editUserIndex, setEditUserIndex] = useState(null);
   const [delUserIndex, setDelUserIndex] = useState(null);
 
-  const mockuser = [
-    {
-      userName: "admin user",
-      email: "admin@gmail.com",
-    },
-    {
-      userName: "adminTle",
-      email: "admintle@gmail.com",
-    },
-    {
-      userName: "Tle",
-      email: "tle@gmail.com",
-    },
-  ];
+  //pagination
+  const [totalUsers, setTotalUsers] = useState(0);
+  const [pageNo, setPageNo] = useState(1);
+  const [limitPerPage, setLimitPerPage] = useState(10);
+
+  //fetchusers
+  const fetchUsers = async (
+    pageNo,
+    limitPerPage,
+    searchText = null,
+    sortField = "createdAt",
+    sortDirection = -1
+  ) => {
+    try {
+      const res = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/api/v1/auth/getUsers`,
+        {
+          pagination: {
+            pageNo,
+            limitPerPage,
+          },
+          filters: {
+            searchText: searchText,
+          },
+          sort: {
+            sortField,
+            sortDirection,
+          },
+        },
+        { withCredentials: true }
+      );
+
+      if (res.status === 200) {
+        //console.log( res.data.data);
+        setUsers(res.data.data.users);
+        setTotalUsers(res.data.data.totalCount);
+      }
+    } catch (err) {
+      console.error("Error fetching users:", err.response?.data || err.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchUsers(pageNo, limitPerPage);
+  }, [pageNo, limitPerPage]);
+
   return (
     <div
       className={` ${
@@ -67,19 +101,19 @@ function UsersList() {
           </div>
 
           <div>
-            {mockuser.map((user, i) => (
+            {users.map((user, i) => (
               <div key={i}>
-                <div className="grid  grid-cols-[2fr_2fr_1fr] gap-4 items-center px-2 py-2">
+                <div className="grid grid-cols-[2fr_2fr_1fr] gap-4 items-center px-2 py-2">
                   <div className="capitalize">{user.userName}</div>
                   <div>{user.email}</div>
-                  <div className="flex  gap-4 mt-2 text-xl">
+                  <div className="flex gap-4 mt-2 text-xl">
                     <HiOutlinePencil
                       onClick={() => setEditUserIndex(i)}
                       className="cursor-pointer hover:text-blue-600 transition"
                     />
                     {editUserIndex === i && (
                       <Modal onClose={() => setEditUserIndex(null)}>
-                        <UpdateUser user={mockuser[i]} />
+                        <UpdateUser user={users[i]} />
                       </Modal>
                     )}
 
@@ -94,7 +128,7 @@ function UsersList() {
                     )}
                   </div>
                 </div>
-                {i !== mockuser.length - 1 && (
+                {i !== users.length - 1 && (
                   <hr className="border border-gray-300 my-2" />
                 )}
               </div>
@@ -102,7 +136,12 @@ function UsersList() {
           </div>
         </div>
       </div>
-      <Pagination />
+      <Pagination
+        pageNo={pageNo}
+        limitPerPage={limitPerPage}
+        totalCount={totalUsers}
+        setPageNo={setPageNo}
+      />
     </div>
   );
 }

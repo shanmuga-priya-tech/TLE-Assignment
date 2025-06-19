@@ -6,8 +6,7 @@ function UpdateCurrUser({ onClose }) {
   const { user } = useContext(AuthContext);
   const [userName, setUserName] = useState(user?.userName || " ");
   const [userEmail, setUserEmail] = useState(user?.userEmail || " ");
-  const [currPassword, setCurrPassword] = useState("");
-  const [newPassword, setNewPassword] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = () => {};
 
