@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Themecontext } from "../../context/ThemeContext";
 import {
   HiOutlinePencil,
@@ -6,9 +6,11 @@ import {
   HiOutlineUserAdd,
 } from "react-icons/hi";
 import Pagination from "../General/Pagination";
+import AddUser from "../Forms/AddUser";
 
 function Users() {
   const { theme } = useContext(Themecontext);
+  const [adduser, setAdduser] = useState(false);
   const mockuser = [
     {
       userName: "admin user",
@@ -32,13 +34,17 @@ function Users() {
       <div>
         <div className="flex justify-between items-center pb-4">
           <h1 className="text-2xl font-bold">Users List:</h1>
-          <button className="py-2 px-4 flex items-center cursor-pointer rounded-lg border-none bg-blue-700 text-white text-lg">
+          <button
+            onClick={() => setAdduser((prev) => !prev)}
+            className="py-2 px-4 flex items-center cursor-pointer rounded-lg border-none bg-blue-700 text-white text-lg"
+          >
             <span>
               <HiOutlineUserAdd />
             </span>{" "}
             Add
           </button>
         </div>
+        {adduser && <AddUser onClose={() => setAdduser(false)} />}
         <div
           className={`border border-gray-400 mt-2 rounded-lg ${
             theme === "dark"

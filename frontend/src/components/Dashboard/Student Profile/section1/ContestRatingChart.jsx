@@ -69,7 +69,7 @@ function ContestRatingChart() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
         <ResponsiveContainer width="100%" height={300}>
-          <h1 className="text-xl text-black font-bold pb-2">Ratings Graph:</h1>
+          <h1 className="text-xl text-black font-bold pb-2">Ratings Graph</h1>
           <AreaChart
             data={contestGraphData}
             margin={{ top: 10, right: 30, left: 0, bottom: 0 }}

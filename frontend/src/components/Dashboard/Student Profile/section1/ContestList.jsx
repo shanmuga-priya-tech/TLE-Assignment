@@ -6,7 +6,7 @@ function ContestList({ contests }) {
 
   return (
     <div className="pt-10 md:pt-0">
-      <h1 className="text-xl font-bold text-black">Contest List:</h1>
+      <h1 className="text-xl font-bold text-black">Contest List</h1>
       <div
         className={`border border-gray-400 mt-2 rounded-lg ${
           theme === "dark"

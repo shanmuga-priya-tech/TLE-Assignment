@@ -23,7 +23,7 @@ function Login() {
           </h1>
           <form className="flex flex-col gap-6 rounded-lg shadow-md border border-gray-300 dark:border-gray-600 p-6">
             <div className="text-lg">
-              <label className="font-bold mb-2 block">Email address:</label>
+              <label className="font-bold mb-2 block">Email Address:</label>
               <input
                 type="email"
                 className="w-full border border-gray-300  rounded px-3 py-2 outline-none focus:border-blue-500 focus:ring focus:ring-blue-300"
@@ -42,7 +42,7 @@ function Login() {
 
             <button
               type="submit"
-              className="bg-blue-600 text-white py-2 rounded-xl font-bold text-lg hover:bg-blue-500 transition mx-auto w-full"
+              className="bg-blue-600 cursor-pointer text-white py-2 rounded-xl font-bold text-lg hover:bg-blue-500 transition mx-auto w-full"
             >
               Login
             </button>
