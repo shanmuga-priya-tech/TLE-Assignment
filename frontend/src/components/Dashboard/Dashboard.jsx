@@ -1,4 +1,4 @@
-import StudentTable from "./StudentTable/StudentTable";
+import StudentTable from "../Student/StudentTable";
 
 function Dashboard() {
   return (

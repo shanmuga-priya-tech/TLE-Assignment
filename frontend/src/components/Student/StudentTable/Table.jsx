@@ -6,10 +6,12 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import Modal from "../../General/Modal";
 import UpdateStudForm from "../StudentForm/UpdateStudForm";
+import DeleteConfirm from "../../General/DeleteConfirm";
 
 function Table() {
   const { theme } = useContext(Themecontext);
   const [updateIndex, setUpdateIndex] = useState(null);
+  const [deleteIndex, setDeleteIndex] = useState(null);
 
   const mockStudents = [
     {
@@ -137,8 +139,25 @@ function Table() {
                 </Link>
 
                 <div className="flex justify-end gap-4 mt-2 text-gray-500">
-                  <HiOutlinePencil className="cursor-pointer hover:text-blue-600 transition" />
-                  <HiOutlineTrash className="cursor-pointer hover:text-red-600 transition" />
+                  <HiOutlinePencil
+                    onClick={() => setUpdateIndex(i)}
+                    className="cursor-pointer hover:text-blue-600 transition"
+                  />
+                  {updateIndex === i && (
+                    <Modal onClose={() => setUpdateIndex(null)}>
+                      <UpdateStudForm />
+                    </Modal>
+                  )}
+
+                  <HiOutlineTrash
+                    onClick={() => setDeleteIndex(i)}
+                    className="cursor-pointer hover:text-red-600 transition"
+                  />
+                  {deleteIndex === i && (
+                    <Modal onClose={() => setDeleteIndex(null)}>
+                      <DeleteConfirm itemID={stud._id} itemName={stud.name} />
+                    </Modal>
+                  )}
                 </div>
               </div>
             </div>
@@ -177,7 +196,15 @@ function Table() {
                 </Modal>
               )}
 
-              <HiOutlineTrash className="cursor-pointer hover:text-red-600 transition" />
+              <HiOutlineTrash
+                onClick={() => setDeleteIndex(i)}
+                className="cursor-pointer hover:text-red-600 transition"
+              />
+              {deleteIndex === i && (
+                <Modal onClose={() => setDeleteIndex(null)}>
+                  <DeleteConfirm itemID={stud._id} itemName={stud.name} />
+                </Modal>
+              )}
             </div>
           </div>
           {/* Divider between rows */}

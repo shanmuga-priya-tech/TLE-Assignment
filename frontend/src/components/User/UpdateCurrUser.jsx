@@ -1,10 +1,21 @@
+import { useState } from "react";
 import { HiOutlineX } from "react-icons/hi";
 
-function UpdateCurrUser({ onClose }) {
+function UpdateCurrUser({ user, onClose }) {
+  const [userName, setUserName] = useState(user?.userName || " ");
+  const [email, setEmail] = useState(user?.email || " ");
+  const [currPassword, setCurrPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+
+  const handleSubmit = () => {};
+
   return (
     <div>
       <div className=" fixed  bg-white text-black top-16 right-6  shadow-lg rounded-md w-72 p-4 z-50 border border-gray-300">
-        <form className="flex   flex-col gap-3 rounded-lg shadow-md border border-gray-300 dark:border-gray-600 p-6">
+        <form
+          onSubmit={handleSubmit}
+          className="flex   flex-col gap-3 rounded-lg shadow-md border border-gray-300 dark:border-gray-600 p-6"
+        >
           <div className="flex justify-between items-center mb-2">
             <h3 className="font-bold text-blue-700">Update Info</h3>
             <button
@@ -19,6 +30,8 @@ function UpdateCurrUser({ onClose }) {
             <label className="font-semibold mb-2 ">UserName</label>
             <input
               type="text"
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
               className="w-full border border-gray-300  rounded px-3 py-2 outline-none focus:border-blue-500 focus:ring focus:ring-blue-300"
             />
           </div>
@@ -26,6 +39,8 @@ function UpdateCurrUser({ onClose }) {
             <label className="font-semibold mb-2 ">Email Address</label>
             <input
               type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="w-full border border-gray-300  rounded px-3 py-2 outline-none focus:border-blue-500 focus:ring focus:ring-blue-300"
             />
           </div>
@@ -33,6 +48,8 @@ function UpdateCurrUser({ onClose }) {
             <label className="font-semibold mb-2 ">Current Password</label>
             <input
               type="password"
+              value={currPassword}
+              onChange={(e) => setCurrPassword(e.target.value)}
               className="w-full border border-gray-300 text-black rounded px-3 py-2 outline-none focus:border-blue-500 focus:ring focus:ring-blue-300"
             />
           </div>
@@ -40,6 +57,8 @@ function UpdateCurrUser({ onClose }) {
             <label className="font-semibold mb-2 ">New Password</label>
             <input
               type="password"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
               className="w-full border border-gray-300 text-black rounded px-3 py-2 outline-none focus:border-blue-500 focus:ring focus:ring-blue-300"
             />
           </div>

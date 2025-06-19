@@ -9,11 +9,13 @@ import Pagination from "../General/Pagination";
 import AddUser from "./AddUser";
 import Modal from "../General/Modal";
 import UpdateUser from "./UpdateUser";
+import DeleteConfirm from "../General/DeleteConfirm";
 
 function UsersList() {
   const { theme } = useContext(Themecontext);
   const [adduser, setAdduser] = useState(false); //toggle form
   const [editUserIndex, setEditUserIndex] = useState(null);
+  const [delUserIndex, setDelUserIndex] = useState(null);
 
   const mockuser = [
     {
@@ -81,7 +83,15 @@ function UsersList() {
                       </Modal>
                     )}
 
-                    <HiOutlineTrash className="cursor-pointer hover:text-red-600 transition" />
+                    <HiOutlineTrash
+                      onClick={() => setDelUserIndex(i)}
+                      className="cursor-pointer hover:text-red-600 transition"
+                    />
+                    {delUserIndex === i && (
+                      <Modal onClose={() => setDelUserIndex(null)}>
+                        <DeleteConfirm itemName={user.userName} />
+                      </Modal>
+                    )}
                   </div>
                 </div>
                 {i !== mockuser.length - 1 && (

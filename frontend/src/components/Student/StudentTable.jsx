@@ -1,10 +1,10 @@
 import { useContext, useState } from "react";
-import { Themecontext } from "../../../context/ThemeContext";
+import { Themecontext } from "../../context/ThemeContext";
 import { HiOutlineDocumentDownload, HiOutlineUserAdd } from "react-icons/hi";
-import Table from "./Table";
-import Pagination from "../../General/Pagination";
-import CreateStud from "../StudentForm/CreateStud";
-import Modal from "../../General/Modal";
+import Table from "./StudentTable/Table";
+import Pagination from "../General/Pagination";
+import CreateStud from "./StudentForm/CreateStud";
+import Modal from "../General/Modal";
 
 function StudentTable() {
   const { theme } = useContext(Themecontext);

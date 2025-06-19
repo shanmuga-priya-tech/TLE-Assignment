@@ -1,16 +1,40 @@
+import axios from "axios";
 import {
   HiOutlineLogout,
-  HiOutlineUser,
+  HiOutlineMoon,
+  HiOutlineSun,
   HiOutlineUserCircle,
 } from "react-icons/hi";
-
 import { useContext, useState } from "react";
 import { Themecontext } from "../../context/ThemeContext";
+import { AuthContext } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+
 import UpdateCurrUser from "../User/UpdateCurrUser";
 
 function Header() {
+  const { user, setUser } = useContext(AuthContext);
   const { theme, toggleTheme } = useContext(Themecontext);
   const [showUpdateForm, setShowUpdateForm] = useState(false);
+
+  const navigate = useNavigate();
+
+  //logout
+  const logout = async () => {
+    try {
+      const res = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/api/v1/logout`,
+        {},
+        { withCredentials: true }
+      );
+      if (res.status === 200) {
+        setUser(null);
+        navigate("/login");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <div
       className={`${
@@ -20,18 +44,17 @@ function Header() {
       <ul className="flex gap-3 items-center">
         <li>
           <button
+            className="bg-none border-none p-[0.6rem] rounded-sm transition-all-0.2s hover:bg-gray-100"
             onClick={toggleTheme}
-            className={`w-14 h-8 flex items-center rounded-full p-1 transition-colors duration-300 cursor-pointer ${
-              theme === "dark" ? "bg-gray-700" : "bg-gray-300"
-            }`}
           >
-            <div
-              className={`bg-white w-6 h-6 rounded-full shadow-md transform transition-transform duration-300 ${
-                theme === "dark" ? "translate-x-6" : "translate-x-0"
-              }`}
-            ></div>
+            {theme === "dark" ? (
+              <HiOutlineSun className="w-[2rem] h-[2rem] text-blue-800" />
+            ) : (
+              <HiOutlineMoon className="w-[2rem] h-[2rem] text-blue-800" />
+            )}
           </button>
         </li>
+
         <li>
           <button
             onClick={() => setShowUpdateForm((prev) => !prev)}
@@ -39,17 +62,23 @@ function Header() {
           >
             <HiOutlineUserCircle className="w-[2rem] h-[2rem] text-blue-800 " />
             <span className="absolute hidden  group-hover:block text-sm">
-              Test
+              {user?.userName}
             </span>
           </button>
         </li>
         {showUpdateForm && (
-          <UpdateCurrUser onClose={() => setShowUpdateForm(false)} />
+          <UpdateCurrUser
+            user={user}
+            onClose={() => setShowUpdateForm(false)}
+          />
         )}
 
         <li>
           <button className="bg-none border-none p-[0.6rem] rounded-sm transition-all-0.2s hover:bg-gray-100 cursor-pointer">
-            <HiOutlineLogout className="w-[2rem] h-[2rem] text-blue-800" />
+            <HiOutlineLogout
+              onClick={logout}
+              className="w-[2rem] h-[2rem] text-blue-800"
+            />
           </button>
         </li>
       </ul>
