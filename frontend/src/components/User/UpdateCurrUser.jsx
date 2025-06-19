@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { HiOutlineX } from "react-icons/hi";
+import { AuthContext } from "../../context/AuthContext";
 
-function UpdateCurrUser({ user, onClose }) {
+function UpdateCurrUser({ onClose }) {
+  const { user } = useContext(AuthContext);
   const [userName, setUserName] = useState(user?.userName || " ");
-  const [email, setEmail] = useState(user?.email || " ");
+  const [userEmail, setUserEmail] = useState(user?.userEmail || " ");
   const [currPassword, setCurrPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
 
@@ -39,8 +41,8 @@ function UpdateCurrUser({ user, onClose }) {
             <label className="font-semibold mb-2 ">Email Address</label>
             <input
               type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={userEmail}
+              onChange={(e) => setUserEmail(e.target.value)}
               className="w-full border border-gray-300  rounded px-3 py-2 outline-none focus:border-blue-500 focus:ring focus:ring-blue-300"
             />
           </div>

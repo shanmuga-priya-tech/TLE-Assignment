@@ -67,10 +67,7 @@ function Header() {
           </button>
         </li>
         {showUpdateForm && (
-          <UpdateCurrUser
-            user={user}
-            onClose={() => setShowUpdateForm(false)}
-          />
+          <UpdateCurrUser onClose={() => setShowUpdateForm(false)} />
         )}
 
         <li>

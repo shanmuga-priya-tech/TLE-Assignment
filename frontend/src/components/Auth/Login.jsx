@@ -14,9 +14,6 @@ function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  console.log(userId);
-  console.log(password);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -27,6 +24,7 @@ function Login() {
       );
 
       if (res.status === 200) {
+        //console.log(res.data.data);
         const token = res.data.data.token;
         const user = jwtDecode(token);
         localStorage.setItem("token", token);
