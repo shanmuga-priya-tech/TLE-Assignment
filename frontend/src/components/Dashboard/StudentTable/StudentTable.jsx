@@ -1,11 +1,14 @@
-import { useContext } from "react";
-import { Themecontext } from "../../context/ThemeContext";
+import { useContext, useState } from "react";
+import { Themecontext } from "../../../context/ThemeContext";
 import { HiOutlineDocumentDownload, HiOutlineUserAdd } from "react-icons/hi";
 import Table from "./Table";
-import Pagination from "../General/Pagination";
+import Pagination from "../../General/Pagination";
+import CreateStud from "../StudentForm/CreateStud";
+import Modal from "../../General/Modal";
 
 function StudentTable() {
   const { theme } = useContext(Themecontext);
+  const [showAddForm, setShowAddForm] = useState(false);
 
   return (
     <div
@@ -71,10 +74,18 @@ function StudentTable() {
             </button>
 
             {/* Add */}
-            <button className="py-2 px-4 flex items-center justify-center gap-2 cursor-pointer rounded-lg bg-blue-700 text-white text-lg">
+            <button
+              onClick={() => setShowAddForm(true)}
+              className="py-2 px-4 flex items-center justify-center gap-2 cursor-pointer rounded-lg bg-blue-700 text-white text-lg"
+            >
               <HiOutlineUserAdd />
               Add
             </button>
+            {showAddForm && (
+              <Modal onClose={() => setShowAddForm(false)}>
+                <CreateStud />
+              </Modal>
+            )}
           </div>
         </div>
       </div>

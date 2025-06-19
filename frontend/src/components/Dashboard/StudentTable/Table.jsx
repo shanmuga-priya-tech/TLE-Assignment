@@ -1,12 +1,15 @@
 import { HiOutlineEye, HiOutlineMail, HiOutlinePhone } from "react-icons/hi";
 import { HiOutlinePencil, HiOutlineTrash } from "react-icons/hi";
 import { format } from "date-fns";
-import { Themecontext } from "../../context/ThemeContext";
-import { useContext } from "react";
+import { Themecontext } from "../../../context/ThemeContext";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import Modal from "../../General/Modal";
+import UpdateStudForm from "../StudentForm/UpdateStudForm";
 
 function Table() {
   const { theme } = useContext(Themecontext);
+  const [updateIndex, setUpdateIndex] = useState(null);
 
   const mockStudents = [
     {
@@ -164,7 +167,16 @@ function Table() {
               >
                 <HiOutlineEye size={18} />
               </Link>
-              <HiOutlinePencil className="cursor-pointer hover:text-blue-600 transition" />
+              <HiOutlinePencil
+                onClick={() => setUpdateIndex(i)}
+                className="cursor-pointer hover:text-blue-600 transition"
+              />
+              {updateIndex === i && (
+                <Modal onClose={() => setUpdateIndex(null)}>
+                  <UpdateStudForm />
+                </Modal>
+              )}
+
               <HiOutlineTrash className="cursor-pointer hover:text-red-600 transition" />
             </div>
           </div>

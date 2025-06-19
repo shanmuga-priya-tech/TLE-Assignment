@@ -37,15 +37,15 @@ function Modal({ children, onClose }) {
       <div
         ref={modalRef}
         className={`relative w-full max-w-md  rounded-lg shadow-lg transition-all duration-500 border border-gray-400 ${
-          theme === "dark" ? "bg-slate-900 text-white" : "bg-gray-50 text-black"
+          theme === "dark" ? "bg-slate-950 text-white" : "bg-gray-50 text-black"
         } p-4 sm:p-6 max-h-[90vh] overflow-y-auto`}
       >
         {/* Close Button */}
         <button
           onClick={handleClose}
-          className="absolute top-4 right-4 bg-none border-none p-1 rounded-sm transition-all duration-200 hover:bg-gray-100"
+          className="absolute top-4 cursor-pointer right-4 bg-none  rounded-full border border-gray-600   transition-all duration-200 hover:bg-gray-100"
         >
-          <HiXMark className="w-6 h-6 text-gray-500 bg-slate-50 rounded-full" />
+          <HiXMark className="w-6 h-6 text-gray-500  bg-slate-50 rounded-full" />
         </button>
 
         {children}
