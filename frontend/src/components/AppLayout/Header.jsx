@@ -4,11 +4,13 @@ import {
   HiOutlineUserCircle,
 } from "react-icons/hi";
 
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Themecontext } from "../../context/ThemeContext";
+import UpdateCurrUser from "../User/UpdateCurrUser";
 
 function Header() {
   const { theme, toggleTheme } = useContext(Themecontext);
+  const [showUpdateForm, setShowUpdateForm] = useState(false);
   return (
     <div
       className={`${
@@ -31,13 +33,19 @@ function Header() {
           </button>
         </li>
         <li>
-          <button className="relative group inline-block bg-none border-none p-[0.6rem] rounded-sm transition-all-0.2s cursor-pointer">
+          <button
+            onClick={() => setShowUpdateForm((prev) => !prev)}
+            className="relative group inline-block bg-none border-none p-[0.6rem] rounded-sm transition-all-0.2s cursor-pointer"
+          >
             <HiOutlineUserCircle className="w-[2rem] h-[2rem] text-blue-800 " />
             <span className="absolute hidden  group-hover:block text-sm">
               Test
             </span>
           </button>
         </li>
+        {showUpdateForm && (
+          <UpdateCurrUser onClose={() => setShowUpdateForm(false)} />
+        )}
 
         <li>
           <button className="bg-none border-none p-[0.6rem] rounded-sm transition-all-0.2s hover:bg-gray-100 cursor-pointer">
