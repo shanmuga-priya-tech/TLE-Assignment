@@ -6,11 +6,15 @@ import {
   HiOutlineUserAdd,
 } from "react-icons/hi";
 import Pagination from "../General/Pagination";
-import AddUser from "../Forms/AddUser";
+import AddUser from "./AddUser";
+import Modal from "../General/Modal";
+import UpdateUser from "./UpdateUser";
 
-function Users() {
+function UsersList() {
   const { theme } = useContext(Themecontext);
-  const [adduser, setAdduser] = useState(false);
+  const [adduser, setAdduser] = useState(false); //toggle form
+  const [editUserIndex, setEditUserIndex] = useState(null);
+
   const mockuser = [
     {
       userName: "admin user",
@@ -44,7 +48,9 @@ function Users() {
             Add
           </button>
         </div>
+
         {adduser && <AddUser onClose={() => setAdduser(false)} />}
+
         <div
           className={`border border-gray-400 mt-2 rounded-lg ${
             theme === "dark"
@@ -65,7 +71,16 @@ function Users() {
                   <div className="capitalize">{user.userName}</div>
                   <div>{user.email}</div>
                   <div className="flex  gap-4 mt-2 text-xl">
-                    <HiOutlinePencil className="cursor-pointer hover:text-blue-600 transition" />
+                    <HiOutlinePencil
+                      onClick={() => setEditUserIndex(i)}
+                      className="cursor-pointer hover:text-blue-600 transition"
+                    />
+                    {editUserIndex === i && (
+                      <Modal onClose={() => setEditUserIndex(null)}>
+                        <UpdateUser user={mockuser[i]} />
+                      </Modal>
+                    )}
+
                     <HiOutlineTrash className="cursor-pointer hover:text-red-600 transition" />
                   </div>
                 </div>
@@ -82,4 +97,4 @@ function Users() {
   );
 }
 
-export default Users;
+export default UsersList;

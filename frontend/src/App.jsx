@@ -4,7 +4,7 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import PageNotFound from "./components/General/PageNotFound";
 import { ThemeProvider } from "./context/ThemeContext";
 import Downloads from "./components/DownloadHistory/Downloads";
-import Users from "./components/UsersList/Users";
+import UsersList from "./components/User/UsersList";
 import StudentProfile from "./components/Dashboard/Student Profile/StudentProfile";
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/studProfile/:studId" element={<StudentProfile />} />
               <Route path="/downloads" element={<Downloads />} />
-              <Route path="/users" element={<Users />} />
+              <Route path="/users" element={<UsersList />} />
             </Route>
 
             {/* Catch-All Route */}
