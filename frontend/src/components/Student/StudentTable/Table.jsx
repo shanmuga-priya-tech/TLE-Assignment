@@ -8,63 +8,10 @@ import Modal from "../../General/Modal";
 import UpdateStudForm from "../StudentForm/UpdateStudForm";
 import DeleteConfirm from "../../General/DeleteConfirm";
 
-function Table() {
+function Table({ data }) {
   const { theme } = useContext(Themecontext);
   const [updateIndex, setUpdateIndex] = useState(null);
   const [deleteIndex, setDeleteIndex] = useState(null);
-
-  const mockStudents = [
-    {
-      _id: "1",
-      name: "Alice Johnson",
-      email: "alice.johnson@example.com",
-      phone: "9876543210",
-      codeforcesHandle: "alice_cf",
-      currentRating: 1650,
-      maxRating: 1700,
-      lastCFUpdate: "2025-06-15T02:00:00Z",
-    },
-    {
-      _id: "2",
-      name: "Bob Smith",
-      email: "bob.smith@example.com",
-      phone: "9123456780",
-      codeforcesHandle: "bob_the_cf",
-      currentRating: 1400,
-      maxRating: 1550,
-      lastCFUpdate: "2025-06-15T02:00:00Z",
-    },
-    {
-      _id: "3",
-      name: "Charlie Lee",
-      email: "charlie.lee@example.com",
-      phone: "9988776655",
-      codeforcesHandle: "charlie_leet",
-      currentRating: 1800,
-      maxRating: 1850,
-      lastCFUpdate: "2025-06-15T02:00:00Z",
-    },
-    {
-      _id: "4",
-      name: "Diana Green",
-      email: "diana.green@example.com",
-      phone: "9786543210",
-      codeforcesHandle: "diana_pro",
-      currentRating: 1200,
-      maxRating: 1350,
-      lastCFUpdate: "2025-06-15T02:00:00Z",
-    },
-    {
-      _id: "5",
-      name: "Ethan Wright",
-      email: "ethan.wright@example.com",
-      phone: "9112233445",
-      codeforcesHandle: "ethan_cf_legend",
-      currentRating: 1900,
-      maxRating: 2000,
-      lastCFUpdate: "2025-01-15T02:00:00Z",
-    },
-  ];
 
   return (
     <div
@@ -85,10 +32,10 @@ function Table() {
         <div></div>
       </div>
 
-      {mockStudents.map((stud, i) => (
+      {data?.map((stud, i) => (
         <div
           key={i}
-          className={`md:px-0 ${i === mockStudents.length - 1 ? "pb-4" : ""}`}
+          className={`md:px-0 ${i === data.length - 1 ? "pb-4" : ""}`}
         >
           {/* Modern Mobile Card - Only visible on small screens */}
           <div className="flex flex-col gap-4 md:hidden my-5">
@@ -96,10 +43,10 @@ function Table() {
               {/*  Name + last scene */}
               <div className="flex justify-between items-center">
                 <h2 className="text-lg font-semibold capitalize text-gray-800">
-                  {stud.name}
+                  {stud.studentName}
                 </h2>
                 <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full capitalize">
-                  {format(new Date(stud.lastCFUpdate), "dd MMM hh:mm a")}
+                  {format(new Date(stud.lastUpdated), "dd MMM hh:mm a")}
                 </span>
               </div>
 
@@ -109,16 +56,16 @@ function Table() {
                   <span className="text-blue-700">
                     <HiOutlineMail />
                   </span>
-                  : {stud.email}
+                  : {stud.studentEmail}
                 </span>
                 <span className="bg-gray-100 flex items-center gap-1 px-2 py-1 rounded">
                   <span className="text-blue-700">
                     <HiOutlinePhone />{" "}
                   </span>
-                  : {stud.phone}
+                  : {stud.studentPhone}
                 </span>
                 <span className="bg-gray-100 px-2 py-1 rounded">
-                  👨‍💻 CodeForcesHandles: {stud.codeforcesHandle}
+                  👨‍💻 CodeForcesHandles: {stud.studentCFHandle}
                 </span>
                 <span className="bg-gray-100 px-2 py-1 rounded">
                   ⭐ CurrentRating: {stud.currentRating}
@@ -165,17 +112,17 @@ function Table() {
 
           {/* Grid Table - Only visible on md+ */}
           <div className="hidden md:grid md:grid-cols-[1.5fr_2fr_1.5fr_2fr_1fr_1fr_1.5fr_0.5fr] gap-4 items-center px-2">
-            <div className="font-medium capitalize">{stud.name}</div>
-            <div className=" truncate">{stud.email}</div>
-            <div className="">{stud.phone}</div>
-            <div className="text-blue-600 font-mono">
-              {stud.codeforcesHandle}
+            <div className="font-medium capitalize">{stud.studentName}</div>
+            <div className=" truncate">{stud.studentEmail}</div>
+            <div className=" pl-4">{stud.studentPhone}</div>
+            <div className="text-blue-600 font-mono pl-8">
+              {stud.studentCFHandle}
             </div>
             <div className="text-center ">{stud.currentRating}</div>
             <div className="text-center ">{stud.maxRating}</div>
             <div className="text-center">
               <span className="text-xs bg-blue-200 text-blue-700 px-2 py-0.5 rounded-full">
-                {format(new Date(stud.lastCFUpdate), "dd MMM hh:mm a")}
+                {format(new Date(stud.lastUpdated), "dd MMM hh:mm a")}
               </span>
             </div>
 
@@ -208,7 +155,7 @@ function Table() {
             </div>
           </div>
           {/* Divider between rows */}
-          {i !== mockStudents.length - 1 && (
+          {i !== data.length - 1 && (
             <hr className="hidden md:block border border-gray-300 my-4" />
           )}
         </div>
