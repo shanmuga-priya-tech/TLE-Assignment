@@ -23,11 +23,13 @@ function Header() {
   const logout = async () => {
     try {
       const res = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/v1/logout`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/v1/auth/logout`,
         {},
         { withCredentials: true }
       );
       if (res.status === 200) {
+        localStorage.setItem("user", null);
+        localStorage.setItem("token", null);
         setUser(null);
         navigate("/login");
       }
