@@ -85,7 +85,12 @@ function UsersList() {
           </button>
         </div>
 
-        {adduser && <AddUser onClose={() => setAdduser(false)} />}
+        {adduser && (
+          <AddUser
+            onClose={() => setAdduser(false)}
+            fetchUsers={() => fetchUsers(pageNo, limitPerPage)}
+          />
+        )}
 
         <div
           className={`border border-gray-400 mt-2 rounded-lg ${
@@ -113,7 +118,10 @@ function UsersList() {
                     />
                     {editUserIndex === i && (
                       <Modal onClose={() => setEditUserIndex(null)}>
-                        <UpdateUser user={users[i]} />
+                        <UpdateUser
+                          user={user}
+                          onClose={() => setEditUserIndex(null)}
+                        />
                       </Modal>
                     )}
 

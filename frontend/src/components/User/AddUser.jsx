@@ -3,7 +3,7 @@ import { useState } from "react";
 import { HiOutlineX } from "react-icons/hi";
 import { toast } from "react-hot-toast";
 
-function AddUser({ onClose }) {
+function AddUser({ onClose, fetchUsers }) {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -31,6 +31,7 @@ function AddUser({ onClose }) {
         setPassword(" ");
         setRole(" ");
         onClose();
+        fetchUsers();
         toast.success("User Added Successfully!");
       }
     } catch (err) {
