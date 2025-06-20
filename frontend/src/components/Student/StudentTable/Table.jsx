@@ -94,7 +94,7 @@ function Table({ data }) {
               {/* actions */}
               <div className="flex items-center flex-wrap justify-between">
                 <Link
-                  to={`/studProfile/${123}`}
+                  to={`/studProfile/${stud._id}`}
                   className="text-sm flex items-center gap-1 cursor-pointer text-blue-500"
                 >
                   <HiOutlineEye />
@@ -162,7 +162,7 @@ function Table({ data }) {
 
             <div className="flex justify-end gap-4 mt-2 text-gray-500">
               <Link
-                to={`/studProfile/${123}`}
+                to={`/studProfile/${stud._id}`}
                 className="flex justify-center text-blue-500 cursor-pointer hover:text-blue-700 transition"
               >
                 <HiOutlineEye size={18} />

@@ -35,7 +35,10 @@ function App() {
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="downloads" element={<Downloads />} />
               <Route path="users" element={<UsersList />} />
-              <Route path="studProfile/:studId" element={<StudentProfile />} />
+              <Route
+                path="studProfile/:studentId"
+                element={<StudentProfile />}
+              />
             </Route>
 
             {/* Catch-All Route */}
