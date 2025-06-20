@@ -23,6 +23,7 @@ function CreateStud({ fetchStudents }) {
         }
       );
       if (res.status === 200) {
+        console.log(res.data);
         toast.success("Student Created Successfully!");
         setStudentName(" ");
         setstudentEmail(" ");
@@ -32,7 +33,7 @@ function CreateStud({ fetchStudents }) {
         fetchStudents();
       }
     } catch (err) {
-      //console.log(err);
+      console.log(err);
       setError(err.response.data.data.errorMessage);
     }
   };

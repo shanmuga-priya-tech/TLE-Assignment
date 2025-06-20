@@ -6,7 +6,9 @@ function UpdateCurrUser({ onClose }) {
   const { user } = useContext(AuthContext);
   const [userName, setUserName] = useState(user?.userName || " ");
   const [userEmail, setUserEmail] = useState(user?.userEmail || " ");
-  const [password, setPassword] = useState("");
+  const [currPassword, setCurrPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = () => {};
 
@@ -63,7 +65,9 @@ function UpdateCurrUser({ onClose }) {
               className="w-full border border-gray-300 text-black rounded px-3 py-2 outline-none focus:border-blue-500 focus:ring focus:ring-blue-300"
             />
           </div>
-          <p className="text-red-600 font-semibold text-sm">Error</p>
+          {error && (
+            <p className="text-red-600 font-semibold text-sm">{error}</p>
+          )}
           <button
             type="submit"
             className="bg-blue-600 cursor-pointer text-white py-2 rounded-xl font-bold text-lg hover:bg-blue-500 transition mx-auto w-full"

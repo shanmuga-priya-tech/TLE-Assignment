@@ -46,7 +46,9 @@ function Table({ data }) {
                   {stud.studentName}
                 </h2>
                 <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full capitalize">
-                  {format(new Date(stud.lastUpdated), "dd MMM hh:mm a")}
+                  {stud.lastUpdated !== null
+                    ? format(new Date(stud.lastUpdated), "dd MMM hh:mm a")
+                    : "Fetching..."}
                 </span>
               </div>
 
@@ -68,10 +70,24 @@ function Table({ data }) {
                   👨‍💻 CodeForcesHandles: {stud.studentCFHandle}
                 </span>
                 <span className="bg-gray-100 px-2 py-1 rounded">
-                  ⭐ CurrentRating: {stud.currentRating}
+                  ⭐ CurrentRating:{" "}
+                  <span
+                    className={`${
+                      stud.currentRating === null && "text-blue-600"
+                    }`}
+                  >
+                    {stud.currentRating !== null
+                      ? stud.currentRating
+                      : "Fetching..."}
+                  </span>
                 </span>
-                <span className="bg-gray-100 px-2 py-1 rounded">
-                  🌟 MaxRating: {stud.maxRating}
+                <span className={`bg-gray-100 px-2 py-1 rounded `}>
+                  🌟 MaxRating:{" "}
+                  <span
+                    className={`${stud.maxRating === null && "text-blue-600"}`}
+                  >
+                    {stud.maxRating !== null ? stud.maxRating : "Fetching..."}
+                  </span>
                 </span>
               </div>
 
@@ -118,11 +134,29 @@ function Table({ data }) {
             <div className="text-blue-600 font-mono pl-8">
               {stud.studentCFHandle}
             </div>
-            <div className="text-center ">{stud.currentRating}</div>
-            <div className="text-center ">{stud.maxRating}</div>
-            <div className="text-center">
+            <div
+              className={`text-center ${
+                stud.currentRating === null && "text-blue-600 text-sm "
+              }`}
+            >
+              {stud.currentRating !== null ? stud.currentRating : "Fetching..."}
+            </div>
+            <div
+              className={`text-center ${
+                stud.maxRating === null && "text-blue-600 text-sm "
+              }`}
+            >
+              {stud.maxRating !== null ? stud.maxRating : "Fetching..."}
+            </div>
+            <div
+              className={`text-center ${
+                stud.maxRating === null && "text-gray-400 text-sm "
+              }`}
+            >
               <span className="text-xs bg-blue-200 text-blue-700 px-2 py-0.5 rounded-full">
-                {format(new Date(stud.lastUpdated), "dd MMM hh:mm a")}
+                {stud.lastUpdated !== null
+                  ? format(new Date(stud.lastUpdated), "dd MMM hh:mm a")
+                  : "Fetching..."}
               </span>
             </div>
 

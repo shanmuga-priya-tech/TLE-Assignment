@@ -1,8 +1,9 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Themecontext } from "../../../context/ThemeContext";
 
 function UpdateStudForm() {
   const { theme } = useContext(Themecontext);
+  const [error, setError] = useState("");
   return (
     <div
       className={` ${
@@ -47,7 +48,9 @@ function UpdateStudForm() {
             />
           </div>
 
-          <p className="text-red-600 font-semibold text-sm">Error</p>
+          {error && (
+            <p className="text-red-600 font-semibold text-sm">{error}</p>
+          )}
 
           <button
             type="submit"
