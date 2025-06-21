@@ -19,7 +19,7 @@ function Pagination({ pageNo, limitPerPage, totalCount, setPageNo }) {
 
   return (
     <div className="flex justify-between items-center mt-6">
-      <p>
+      <p className="text-gray-600">
         Showing <span>{start}</span> to <span>{end}</span> of{" "}
         <span>{totalCount}</span> results
       </p>

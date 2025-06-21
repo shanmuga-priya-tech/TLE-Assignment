@@ -1,8 +1,2 @@
 @import "tailwindcss";
 
-.react-calendar-heatmap .react-calendar-heatmap-week > rect {
-  width: 10px !important;
-  height: 10px !important;
-  rx: 2px;
-  ry: 2px;
-}

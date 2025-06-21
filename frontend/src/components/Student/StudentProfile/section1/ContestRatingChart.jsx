@@ -29,7 +29,7 @@ function ContestRatingChart({ studentId }) {
           { withCredentials: true }
         );
         if (res.status === 200) {
-          console.log(res.data);
+          //console.log(res.data);
           setContestHistory(res.data.data);
         } else {
           setError("Failed to fetch data");

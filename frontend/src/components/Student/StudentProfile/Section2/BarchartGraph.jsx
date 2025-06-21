@@ -1,25 +1,66 @@
-import { BarChart, Bar, XAxis, YAxis } from "recharts";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { BarChart, Bar, XAxis, YAxis, Tooltip } from "recharts";
 
-function BarchartGraph() {
-  const mockProblemStats = [
-    { ratingBucket: "800-999", problemsSolved: 5 },
-    { ratingBucket: "1000-1199", problemsSolved: 8 },
-    { ratingBucket: "1200-1399", problemsSolved: 15 },
-    { ratingBucket: "1400-1599", problemsSolved: 10 },
-    { ratingBucket: "1600-1799", problemsSolved: 6 },
-    { ratingBucket: "1800-1999", problemsSolved: 3 },
-  ];
+function BarchartGraph({ studentId, dateRange }) {
+  const [ratingBucket, setRatingBucket] = useState([]);
+
+  useEffect(() => {
+    const fetchRatingBucket = async () => {
+      try {
+        const res = await axios.post(
+          `${import.meta.env.VITE_BACKEND_URL}/api/v1/students/barchart`,
+          {
+            studentId,
+            dateRange,
+          },
+          {
+            withCredentials: true,
+          }
+        );
+        if (res.status === 200) {
+          console.log(res.data.data);
+          setRatingBucket(res.data.data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchRatingBucket();
+  }, [studentId, dateRange]);
+
+  // Custom tooltip component
+  const CustomTooltip = ({ active, payload, label }) => {
+    if (active && payload && payload.length) {
+      return (
+        <div
+          style={{
+            backgroundColor: "#fff",
+            border: "1px solid #ccc",
+            padding: "8px",
+          }}
+        >
+          <p className="text-black">
+            <strong>Rating Range:</strong> {label}
+          </p>
+          <p className="text-black">
+            <strong>Problems Solved:</strong> {payload[0].value}
+          </p>
+        </div>
+      );
+    }
+    return null;
+  };
 
   return (
     <div className="mt-4 flex flex-col items-center">
-      <BarChart width={400} height={200} data={mockProblemStats}>
-        <Bar dataKey="problemsSolved" fill="#4136e4" />
+      <BarChart width={400} height={200} data={ratingBucket}>
         <XAxis dataKey="ratingBucket" />
-        <YAxis />
+        <YAxis allowDecimals={false} />
+        <Tooltip content={<CustomTooltip />} />
+        <Bar dataKey="problemsSolved" fill="#4136e4" />
       </BarChart>
-      <p className="text-sm text-gray-600">
-        problems solved per rating bucket{" "}
-      </p>
+      <p className="text-sm text-gray-600">Problems solved per rating bucket</p>
     </div>
   );
 }

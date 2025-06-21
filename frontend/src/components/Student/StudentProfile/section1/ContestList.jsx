@@ -12,7 +12,6 @@ function ContestList({ studentId, dateRange }) {
   const [pageNo, setPageNo] = useState(1);
   const limitPerPage = 5;
   const [totalCount, setTotalCount] = useState(0);
-  console.log(studentId, dateRange);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -92,14 +91,12 @@ function ContestList({ studentId, dateRange }) {
         </div>
       </div>
 
-      {/* Pagination: Show only if more than 1 page */}
-      {totalPages > 1 && (
-        <Pagination
-          currentPage={pageNo}
-          totalPages={totalPages}
-          onPageChange={handlePageChange}
-        />
-      )}
+      <Pagination
+        totalCount={totalCount}
+        limitPerPage={limitPerPage}
+        pageNo={pageNo}
+        setPageNo={setPageNo}
+      />
     </div>
   );
 }
